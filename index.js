@@ -1,24 +1,29 @@
-import { client } from "./utils/db.js";
 import express from "express";
+import messageRouter from "./apps/messages.js";
+import { client } from "./utils/db.js";
 
 async function init() {
-  try {
-    await client.connect();
-    console.log("Connected to the database");
+  const app = express();
+  const port = 3000;
 
-    const app = express();
+  await client.connect();
 
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
-    const PORT = process.env.PORT || 4000;
+  app.use("/messages", messageRouter);
 
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error("Error connecting to the database:", error);
-  }
+  app.get("/", (req, res) => {
+    res.send("Hello World! Test Port 3000");
+  });
+
+  app.get("*", (req, res) => {
+    res.status(404).send("Not found");
+  });
+
+  app.listen(port, () => {
+    console.log(`Server is running at port ${port}`);
+  });
 }
 
 init();

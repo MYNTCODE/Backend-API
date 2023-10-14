@@ -1,6 +1,11 @@
 
 ### CRUD APIs
 <h1>This is a my project for portfolio it's not secret</h1>
+<p>Tech stack and tools </p>
+<a href="https://nodejs.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" width="36" height="36" alt="NodeJS" /></a>
+<a href="https://expressjs.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/express-colored.svg" width="36" height="36" alt="Express" /></a>
+<a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mongodb-colored.svg" width="36" height="36" alt="MongoDB" /></a>
+
 <h3>1. POST method I'll start by adding data to the table.</h3>
 <h4>Postman test</h4>
 <img src="https://cdn.discordapp.com/attachments/1144637676016898219/1162766370023411812/phonto.jpg?ex=653d2191&is=652aac91&hm=3863e4fa3ab68244ff5b34f63d59807875ca494ed396024d9de6ef440253fe60&" width="500" />

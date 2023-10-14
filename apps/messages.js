@@ -11,9 +11,7 @@ messageRouter.get("/", async (req, res) => {
   const collection = db.collection("messages");
 
   // 3) เริ่ม Query โดยใช้ `collection.find(query)`
-  const movies = await collection
-    //.limit(1)
-    .toArray(); // convert documents into an array
+  const messages = await collection.find({}).toArray(); // convert documents into an array
 
   // 4) Return ตัว Response กลับไปหา Client
   return res.json({ data: messages });
@@ -34,6 +32,7 @@ messageRouter.post("/", async (req, res) => {
 });
 
 messageRouter.put("/:messageId", async (req, res) => {
+  console.log("PUT request to /messages/:messageId");
   // 2) เลือก Collection
   const collection = db.collection("messages");
 

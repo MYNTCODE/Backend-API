@@ -32,47 +32,44 @@ messageRouter.post("/", async (req, res) => {
 });
 
 messageRouter.put("/:messageId", async (req, res) => {
-  console.log("PUT request to /messages/:messageId");
-  // 2) เลือก Collection
-  const collection = db.collection("messages");
+  try {
+    const collection = db.collection("messages");
 
-  // 3) Update ข้อมูลใน Database โดยใช้ `collection.updateOne(query)` โดยการ
-  // นำ messageId จาก Endpoint parameter มา Assign ลงใน Variable `messageId` โดยที่ใช้ ObjectId ในการ Convert Type ก่อน
-  const messageId = ObjectId(req.params.messageId);
-  // นำข้อมูลที่ส่งมาใน Request Body ทั้งหมด Assign ใส่ลงไปใน Variable ที่ชื่อว่า `newMessageData`
-  const newMessageData = { ...req.body };
+    const messageId = new ObjectId(req.params.messageId);
+    const newMessageData = { ...req.body };
 
-  await collection.updateOne(
-    {
-      _id: messageId,
-    },
-    {
-      $set: newMessageData,
-    }
-  );
+    await collection.updateOne(
+      {
+        _id: messageId,
+      },
+      { $set: newMessageData }
+    );
 
-  // 4) ส่ง Response กลับไปหา Client
-  return res.json({
-    message: ` (${messageId}) has been updated successfully`,
-  });
+    return res.json({
+      message: `Message (${messageId}) has been updated successfully`,
+    });
+  } catch (error) {
+    console.error("Error updating message:", error);
+
+    // You can customize the error response based on the type of error
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 messageRouter.delete("/:messageId", async (req, res) => {
-  // 2) เลือก Collection
-  const collection = db.collection("messages");
+  try {
+    const collection = db.collection("messages");
+    const messageId = new ObjectId(req.params.messageId);
+    await collection.deleteOne({
+      _id: messageId,
+    });
 
-  // 3) Delete ข้อมูลออกจากใน Database โดยใช้ `collection.deleteOne(query)`
-  // นำ messageId จาก Endpoint parameter มา Assign ลงใน Variable `messageId`
-  const messageId = ObjectId(req.params.messageId);
-
-  await collection.deleteOne({
-    _id: messageId,
-  });
-
-  // 4) ส่ง Response กลับไปหา Client
-  return res.json({
-    message: `(${messageId}) has been deleted successfully`,
-  });
+    return res.json({
+      message: `(${messageId}) has been deleted successfully`,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 export default messageRouter;

@@ -5,6 +5,7 @@
 <a href="https://nodejs.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" width="36" height="36" alt="NodeJS" /></a>
 <a href="https://expressjs.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/express-colored.svg" width="36" height="36" alt="Express" /></a>
 <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/mongodb-colored.svg" width="36" height="36" alt="MongoDB" /></a>
+<p> Detail : สามารถสร้างข้อมูลขึ้นมาใหม่ในตาราง(document mongoDB)  เรียกข้อมูล แก้ไขอัพเดท และลบข้อมูลได้</p>
 
 <h3>1. POST method I'll start by adding data to the table.</h3>
 <h4>Postman test</h4>

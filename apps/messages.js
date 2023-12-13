@@ -47,6 +47,30 @@ messageRouter.put("/:messageId", async (req, res) => {
   }
 });
 
+messageRouter.patch("/:messageId", async (req, res) => {
+  try {
+    const collection = db.collection("messages");
+
+    const messageId = new ObjectId(req.params.messageId);
+    const updatedFields = { ...req.body };
+
+    await collection.updateOne(
+      {
+        _id: messageId,
+      },
+      { $set: updatedFields }
+    );
+
+    return res.json({
+      message: `Message (${messageId}) has been patched successfully`,
+    });
+  } catch (error) {
+    console.error("Error patching message:", error);
+
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 messageRouter.delete("/:messageId", async (req, res) => {
   try {
     const collection = db.collection("messages");
